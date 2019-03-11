@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Resultado de sua consulta</title>
+	<link rel='stylesheet' type='text/css' href='../bootstrap/css/bootstrap.css'>
+	<style>
+		.jumbotron{
+			width:50%;
+			height:55%;
+			text-align:center;
+			margin:auto;
+			margin-top:20px;
+		}
+		h2{
+			text-align:center;
+			margin:20px;
+		}
+		td{
+			font-weight:bold;
+		}
+		a{
+			position:absolute;
+			left:45%;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+  <h2>Resultado da consulta</h2>
+  <div class="table-responsive">          
+  <table class="table table-striped">
+    <tbody>
+      <tr>
+        <td>Nome</td>
+        <td id='nome'></td>
+      </tr>
+      <tr>
+        <td>Endereço</td>
+        <td id='endereco'></td>
+      </tr>
+      <tr>
+        <td>Renda per capita</td>
+        <td id='renda'></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+<a id='link' class='btn btn-primary' href='../index.html'>Voltar</a>
+<script>
+	var resultado = JSON.parse(localStorage.getItem('retorno'))
+	localStorage.clear()
+	//condicionais para tratamento e exibição das informações
+	if(resultado.data.nome){
+		document.getElementById('nome').innerHTML = resultado.data.nome
+	}else{
+		document.getElementById('nome').innerHTML = "Nenhum nome informado"
+	}
+	document.getElementById('renda').innerHTML = 'R$'+Math.round(resultado.data.rendaperCapita)
+	if(resultado.data.endereco){
+		document.getElementById('endereco').innerHTML = resultado.data.endereco.logradouro+','+resultado.data.endereco.bairro
+	}else{
+		document.getElementById('endereco').innerHTML = "Nenhum endereço corresponde ao CEP informado"
+	}
+</script>
+</body>
+</html>

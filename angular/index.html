@@ -1,0 +1,55 @@
+<html ng-app='renda'>
+<head>
+	<title>Consulta de usuario</title>
+	<link rel='stylesheet' type='text/css' href='bootstrap/css/bootstrap.css'>
+	<script src='js/angular.js'></script>
+	<script src='js/rendaController.js'></script>
+	<style>
+
+		.jumbotron{
+			width:50%;
+			height:80%;
+			text-align:center;
+			margin:auto;
+			margin-top:20px;
+			border:groove;
+		}
+		input{
+			margin:5px;
+		}
+		.titulo{
+			text-align:left;
+			position:relative;
+			left:1.5%;
+
+		}
+	</style>
+</head>
+<body ng-controller='rendaCtrl'>
+	<div class='jumbotron'>
+		<h4>
+			Consulta de Renda e endereço
+		</h4>
+			<form name="usuarioForm" ng-submit="enviaReq(usuario)">
+				<div class='titulo'>Nome</div>
+				<input placeholder="Nome" name="nome" class="form-control" type="text" ng-model="usuario.nome"/></td>
+				<div class='titulo'>CEP</div>
+				<input placeholder="CEP" name="cep" class="form-control" type="text" ng-model="usuario.cep" ng-required="true" ng-pattern="/^\d{5}-\d{3}$/">
+				<div class='titulo'>Renda bruta</div>	
+				<input placeholder="Renda" name="renda" class="form-control" type="text" ng-model="usuario.renda" ng-required="true" ng-pattern="/^\d*$/">
+				<div class='titulo'>Numero de dependentes</div>
+				<input placeholder="Numero de dependentes" name="numDepen" class="form-control" type="text" ng-model="usuario.numDependentes" ng-required="true" ng-pattern="/^\d*$/"/>
+				<button class="btn btn-primary" ng-disabled="usuarioForm.$invalid">Realizar consulta</button>
+			</form>
+			<div ng-show="usuarioForm.cep.$error.pattern" class="alert alert-danger">
+				O campo CEP deve ter o formato DDDDD-DDD.
+			</div>
+			<div ng-show="usuarioForm.renda.$error.pattern" class="alert alert-danger">
+				O campo renda deve ser composto apenas do valor sem representação ou vírgula (por exemplo 1500 para R$1500,00).
+			</div>
+			<div ng-show="usuarioForm.numDepen.$error.pattern" class="alert alert-danger">
+				O campo numero de dependentes deve ser composto apenas por numeros
+			</div>
+	</div>
+</body>
+</html>

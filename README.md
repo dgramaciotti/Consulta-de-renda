@@ -1,4 +1,4 @@
-# Consulta-de-renda
+# Consulta-de-renda / Portuguese
 App simples feita em angular que comunica com backend em Node
 
 Para poder vizualizar o funcionamento:
